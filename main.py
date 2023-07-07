@@ -1,12 +1,16 @@
 import os
 import subprocess
-import logging
 import shutil
 from extensions import Folders
 blacklist = [folder for folder in Folders]
-desktop = subprocess.check_output(["powershell", "-C", "[Environment]::GetFolderPath([Environment+SpecialFolder]::Desktop)"]).decode().replace('\r\n','')
+desktop = subprocess.check_output([
+        "powershell", "-C",
+        "[Environment]::GetFolderPath([Environment+SpecialFolder]::Desktop)"])
+
+desktop = desktop.decode().replace('\r\n', '')
 
 filesOnDesktop = os.listdir(desktop)
+
 
 def getTypeOfFileByExtension(filePath):
     fileName = filePath.split('\\')[-1]
@@ -18,8 +22,8 @@ def getTypeOfFileByExtension(filePath):
                     "fileExtension": fileExtension,
                     "folder": folder
                     }
-        
-        
+
+
 for folder in [folder for folder in Folders]:
     if not os.path.exists(f'{desktop}\\{folder}'):
         os.mkdir(f'{desktop}\\{folder}')
@@ -32,5 +36,3 @@ for file in filesOnDesktop:
             shutil.move(dist, f"{desktop}\\{folder['folder']}")
     if file not in blacklist:
         shutil.move(dist, f"{desktop}\\Folders")
-        
-        
