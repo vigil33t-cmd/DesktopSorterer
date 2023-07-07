@@ -2,6 +2,8 @@ import os
 import subprocess
 import shutil
 from extensions import Folders
+
+
 blacklist = [folder for folder in Folders]
 desktop = subprocess.check_output([
         "powershell", "-C",
@@ -36,3 +38,8 @@ for file in filesOnDesktop:
             shutil.move(dist, f"{desktop}\\{folder['folder']}")
     if file not in blacklist:
         shutil.move(dist, f"{desktop}\\Folders")
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> 08bbcae97f561345c3a9a13a100bac673db9068a
