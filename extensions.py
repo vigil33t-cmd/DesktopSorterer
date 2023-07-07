@@ -24,6 +24,6 @@ Folders = {
     },
     
     "Folders": {
-        "FolderName": "Applications",
+        "FolderName": "Folders",
     },
 }
