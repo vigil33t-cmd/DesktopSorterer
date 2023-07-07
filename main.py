@@ -3,6 +3,8 @@ import subprocess
 import logging
 import shutil
 from extensions import Folders
+
+
 blacklist = [folder for folder in Folders]
 desktop = subprocess.check_output(["powershell", "-C", "[Environment]::GetFolderPath([Environment+SpecialFolder]::Desktop)"]).decode().replace('\r\n','')
 
